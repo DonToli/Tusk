@@ -1,7 +1,6 @@
 package ru.learn.tusk.web.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.learn.tusk.domain.task.Task;
@@ -9,7 +8,7 @@ import ru.learn.tusk.domain.user.User;
 import ru.learn.tusk.service.TaskService;
 import ru.learn.tusk.service.UserService;
 import ru.learn.tusk.web.dto.task.TaskDto;
-import ru.learn.tusk.web.dto.task.UserDto;
+import ru.learn.tusk.web.dto.user.UserDto;
 import ru.learn.tusk.web.dto.validation.OnCreate;
 import ru.learn.tusk.web.dto.validation.OnUpdate;
 import ru.learn.tusk.web.mapper.TaskMapper;
@@ -38,6 +37,7 @@ public class UserController {
     @GetMapping("/{id}")
     public UserDto getById(@PathVariable Long id){
         User user = userService.gerById(id);
+        Task task = taskService.getById(id);
         return userMapper.toDto(user);
     }
 
