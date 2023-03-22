@@ -37,7 +37,6 @@ public class UserController {
     @GetMapping("/{id}")
     public UserDto getById(@PathVariable Long id){
         User user = userService.gerById(id);
-        Task task = taskService.getById(id);
         return userMapper.toDto(user);
     }
 
