@@ -18,23 +18,22 @@ public class TaskController {
     private final TaskService taskService;
     private final TaskMapper taskMapper;
 
-@PutMapping
-public TaskDto update(@Validated(OnUpdate.class)@RequestBody TaskDto dto){
-    Task task = taskMapper.toEntity(dto);
-    Task updateTask = taskService.update(task);
-    return taskMapper.toDto(updateTask);
-}
+    @PutMapping
+    public TaskDto update(@Validated(OnUpdate.class) @RequestBody TaskDto dto) {
+        Task task = taskMapper.toEntity(dto);
+        Task updateTask = taskService.update(task);
+        return taskMapper.toDto(updateTask);
+    }
 
     @GetMapping("/{id}")
-    public TaskDto getById(@PathVariable Long id){
+    public TaskDto getById(@PathVariable Long id) {
         Task task = taskService.getById(id);
         return taskMapper.toDto(task);
     }
-@DeleteMapping("{/id}")
+
+    @DeleteMapping("{/id}")
     public void deleteById(@PathVariable Long id){
     taskService.delete(id);
     }
-
-
 
 }
